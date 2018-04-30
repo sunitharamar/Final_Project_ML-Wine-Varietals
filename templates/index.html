@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    background: #FFF;
+    }
+    
+    
+    .hero, .hero-back {
+    background: #333;
+    background-size: cover;
+    height: 45vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.1s ease;
+    }
+    .hero:hover .hero-back, .hero-back:hover .hero-back {
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    }
+    .hero .container, .hero-back .container {
+    z-index: 100;
+    color: #FFF;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+    padding-top: 7.5%;
+    }
+    
+    .hero-back {
+    background: url("http://www.trbimg.com/img-550c8582/turbine/bal-shop-half-price-wine-bottles") no-repeat 0 20%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+    }
+</style>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Bootstrap Jumbotron Blur</title>
+        
+        
+        <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    
+            <!-- <link rel="stylesheet" href="css/style.css"> -->
+    
+        
+    </head>
+    
+    <body>
+    
+        <div class="hero">
+        <div class="container">
+        <div class="row">
+            <div class="inner col-md-12">
+            <h1 style="font-size:80px" align='center' >Predicting Wine Varietals with Machine Learning</h1>
+            <p></p>  
+            </div>
+        </div>
+        </div>
+        <div class="hero-back"></div>
+    </div>
+        <div>
+        <h4 align="center">Using a dataset of over 130,000 wine reviews, gathered by WineEnthusiast, we wanted to see if it was possible to predict a wine variety based on the description, and with what accuracy. 
+            Below, you can enter in descriptive terms for a wine varietal, and our models will attempt to predict what varietal is being described. </h4>
+        </div>
+<!--         <div class="col-lg-6" style="margin-left:25%">
+                <div class="input-group">
+
+                  <input type="text"  class="form-control" placeholder="Enter your search terms here. Separate with a comma, e.g. Tart, Sweet, Refreshing...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                  </span>
+
+                </div>
+              </div>  -->
+              <form method="POST" action="/">
+                <div class="col-lg-6" style="margin-left:25%">
+                    <div class="form-group">
+                      <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your description">
+                      <small id="smallsearch" class="form-text text-muted">Enter your search terms here. Separate with a comma, e.g. Tart, Sweet, Refreshing....</small>
+                    </div>
+                    <span class="form-group-btn">
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    </span>
+                </div>
+                  </form>
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <h4 align="center">You entered: {{ searchTerms }}</h4>
+                      </div>
+                  </div>
+                  <div class="col-md-8">
+                    <h5 align="center">{{ predResult[0] }}</h5>
+                    <h5 align="center">{{ predResult[1] }}</h5>
+                    <h5 align="center">{{ predResult[2] }}</h5>
+                    <h5 align="center">{{ predResult[3] }}</h5>
+                    <h5 align="center">{{ predResult[4] }}</h5>
+                  </div>
