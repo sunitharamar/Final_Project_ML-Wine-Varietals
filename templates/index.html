@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    background: #FFF;
+    }
+    
+    
+    .hero, .hero-back {
+    background: #333;
+    background-size: cover;
+    height: 45vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.1s ease;
+    }
+    .hero:hover .hero-back, .hero-back:hover .hero-back {
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    }
+    .hero .container, .hero-back .container {
+    z-index: 100;
+    color: #FFF;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+    padding-top: 7.5%;
+    }
+    
+    .hero-back {
+    background: url("http://www.trbimg.com/img-550c8582/turbine/bal-shop-half-price-wine-bottles") no-repeat 0 20%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+    }
+    .parallax{
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+</style>
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Machine Learning with Wine</title>        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+            <!-- <link rel="stylesheet" href="css/style.css"> -->
+    
+        
+    </head>
+    
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Methodology</a>
+                    <a class="nav-item nav-link" href="#">Data</a>
+                    <a class="nav-item nav-link" href="#">About Us</a>
+                  </div>
+                </div>
+              </nav>
+        <div class="hero">
+            
+        <div class="container">
+        <div class="row">
+            <div class="inner col-md-12">
+            <h1 style="font-size:80px" align='center' >Predicting Wine Varietals with Machine Learning</h1>
+            <p></p>  
+            </div>
+        </div>
+        </div>
+        <div class="hero-back parallax"></div>
+    </div>
+        <div>
+        <h5 align="center">Using a dataset of over 130,000 wine reviews, gathered by WineEnthusiast, we wanted to see if it was possible to predict a wine variety based on the description, and with what accuracy. 
+            Below, you can enter in descriptive terms for a wine varietal, and our models will attempt to predict what varietal is being described. </h5>
+        </div>
+<!--         <div class="col-lg-6" style="margin-left:25%">
+                <div class="input-group">
+
+                  <input type="text"  class="form-control" placeholder="Enter your search terms here. Separate with a comma, e.g. Tart, Sweet, Refreshing...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                  </span>
+
+                </div>
+              </div>  -->
+              <form method="POST" action="/">
+                <div class="col-lg-6" style="margin-left:25%">
+                    <div class="form-group">
+                      <input type="text" name="searchTerms" class="form-control" id="search" aria-describedby="search" placeholder="Enter your description">
+                      <small id="smallsearch" class="form-text text-muted">Enter your search terms here. Separate with a comma, e.g. Tart, Sweet, Refreshing....</small>
+                    </div>
+                    <div>
+                      <h6>Choose a model below:</h6>
+                    <select class="form-control" title="Choose a model...">
+                      <option>Logistic Regression</option>
+                      <option>SVM (Support Vector Model)</option>
+                      <option>NLP</option>
+                    </select>
+                    </div>
+                    <span class="form-group-btn">
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    </span>
+                </div>
+                  </form>
+
+                  <div class="row">
+                        <div class="col-lg-12">
+                            <h5 align="center" id="result">You entered: {{ searchTerms }}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+<!--                     <div class="col-md-2">
+                      <p align="center">{{ predResult[0] }}</p>
+                      <p align="center">{{ predResult[1] }}</p>
+                      <p align="center">{{ predResult[2] }}</p>
+                      <p align="center">{{ predResult[3] }}</p>
+                      <p align="center">{{ predResult[4] }}</p> -->
+                    </div>
+                    <div id="myDiv" style="margin-left:15%; height: 400px;" class="col-md-8">
+
+                    </div>
+                    </div>
+  
+<script>
+var probabilities = {{ probs }};
+var listOfWines = {{ predResult|safe }};
+console.log((probabilities));
+console.log(listOfWines)
+var data = [{
+  type: 'bar',
+  x: probabilities[0].reverse(),
+  y: listOfWines.reverse(),
+  orientation: 'h'
+}];
+
+var layout = {
+  title: 'Model Predictions',
+  margin:{
+    l:200,
+    t:50
+  }
+};
+
+Plotly.newPlot('myDiv', data, layout);
+</script>
