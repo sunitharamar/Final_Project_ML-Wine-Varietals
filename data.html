@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    background: #FFF;
+    }
+    
+    
+    .hero, .hero-back {
+    background: #333;
+    background-size: cover;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.1s ease;
+    }
+
+    .hero .container, .hero-back .container {
+    z-index: 100;
+    color: #FFF;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+    }
+    
+    .hero-back {
+    background: url("https://www.gigirosso.com/wp-content/themes/2016/assets/img/4.jpg") no-repeat 0 20%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+    }
+    .parallax{
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .topnav li 
+    {
+        display: inline-block;
+        margin: 40px 0;
+    }
+    
+    .topnav a:hover {
+    background: darkblue;
+    }
+    .topnav li a
+    {
+    margin: 8px;
+    color:#eee;
+    padding: 18px 20px;
+    background: gray;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    margin-left: 20px;
+    width: 70%;
+    }
+    th {
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+    font: 16px;
+    background-color: lightslategrey;
+
+    }
+    td{
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+</style>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Machine Learning with Wine</title>        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+            <!-- <link rel="stylesheet" href="css/style.css"> -->
+    
+        
+    </head>
+    
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Methodology</a>
+                    <a class="nav-item nav-link" href="#">Data</a>
+                    <a class="nav-item nav-link" href="#">About Us</a>
+                  </div>
+                </div>
+        </nav>
+        <div class="hero">
+            
+            <div class="container">
+            <div class="row">
+                <div class="inner col-md-12">
+                <h2 style="font-size:80px" align='center' >Methodology</h2>
+                </div>
+            </div>
+            </div>
+            <div class="hero-back parallax"></div>
+        </div>
+        <div class="container">
+            <!-- <div id="nav-wrapper" class = "models-nav"> -->
+            <ul class = "topnav"  id = "modelsnav" style = "width: 100%">
+                <!-- <li class = "icon text-left">
+                    <a href = "javascipt:void(0);" onclick = "myFunction()"> "More..."
+                        <span class = "CSiconz text-18 fright" style = "padding-right: 20px;">.</span>
+                    </a></li> -->
+                <li><a href = "data.html" style="text-decoration:none">Data</a></li>
+                <li><a href = "logistic.html" style="text-decoration:none">Logistic Regression</a></li>
+                <li><a href = "svm.html" style="text-decoration:none">Support Vector Machine</a></li>
+                <li><a href = "nlp.html" style="text-decoration:none">Natural Language Processing</a></li>
+                <li><a href = "randomforest.html" style="text-decoration:none">Random Forest</a></li>
+            </ul>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-12" style = "align-content: center">
+                <h2>Data</h2>
+                <p>The dataset we used comes from Kaggle.  It contains about 130,000 rows of wine views from Wine Enthusiast.  
+                    We used machine learning to try and predict the wine varietal using words from the review/description. </p>
+                </div>
+                <div class="col-sm-8 col-sm-12s">
+                <h2>Column Data</h2>
+                </div>
+                <table>
+                <tr>
+                    <th>Column</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td>sommelier description of the wine's taste</td>
+                </tr>
+                <tr>
+                    <td>designation</td>
+                    <td>vineyard within winery</td>
+                </tr>
+                <tr>
+                    <td>points</td>
+                    <td>rating by Wine Enthusiast</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>cost of one bottle of wine</td>
+                </tr>
+                <tr>
+                    <td>province</td>
+                    <td>Yoshi Tannamuri</td>
+                </tr>
+                <tr>
+                    <td>region_1</td>
+                    <td>wine growing area</td>
+                </tr>
+                <tr>
+                    <td>region_2</td>
+                    <td>specific region</td>
+                </tr>
+                <tr>
+                    <td>taster_name</td>
+                    <td>wine taster</td>
+                </tr>
+                <tr>
+                    <td>taster_twitter_handle</td>
+                    <td>twitter account of wine taster</td>
+                </tr>
+                <tr>
+                    <td>title</td>
+                    <td>title of wine review (often contains vintage)</td>
+                </tr>
+                <tr>
+                    <td>variety</td>
+                    <td>type of grapes</td>
+                </tr>
+                <tr>
+                    <td>winery</td>
+                    <td>winery that made the wine</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+
+</body>
+</html>
+            
+  
