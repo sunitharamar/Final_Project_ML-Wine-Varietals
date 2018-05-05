@@ -60,38 +60,51 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def home():
     print(loaded_model)
-    predResult = ""
+    log_predResult = ""
     searchTerms = ""
-    probs = ""
-    
+    log_probs = ""
+    entered = "You entered: "
+
     if request.method == "POST":
         print(request.form)
         searchTerms = request.form['searchTerms']
-        model_pred = vect.transform([searchTerms])
+        log_model_pred = vect.transform([searchTerms])
 
-        probab = loaded_model.predict_proba(model_pred)
-        best_n = np.argsort(probab, axis=1)[:,-10:]
-        probs = sorted(probab[0], reverse=True)[0:10]
-        print(sorted(probab[0], reverse=True)[0:10])
+        log_probab = loaded_model.predict_proba(log_model_pred)
+        log_best_n = np.argsort(log_probab, axis=1)[:,-10:]
+        log_probs = sorted(log_probab[0], reverse=True)[0:10]
+        print(sorted(log_probab[0], reverse=True)[0:10])
         print([searchTerms])
-        predResult = [le.classes_[best_n[0][9]],le.classes_[best_n[0][8]],le.classes_[best_n[0][7]],le.classes_[best_n[0][6]],le.classes_[best_n[0][5]],
-        le.classes_[best_n[0][4]],le.classes_[best_n[0][3]], le.classes_[best_n[0][2]],le.classes_[best_n[0][1]],le.classes_[best_n[0][0]]]
-        print(le.classes_[best_n[0][4]])
-        print(le.classes_[best_n[0][3]])
-        print(le.classes_[best_n[0][2]])
-        print(le.classes_[best_n[0][1]])
-        print(le.classes_[best_n[0][0]])
+        log_predResult = [le.classes_[log_best_n[0][9]],le.classes_[log_best_n[0][8]],le.classes_[log_best_n[0][7]],le.classes_[log_best_n[0][6]],le.classes_[log_best_n[0][5]],
+        le.classes_[log_best_n[0][4]],le.classes_[log_best_n[0][3]], le.classes_[log_best_n[0][2]],le.classes_[log_best_n[0][1]],le.classes_[log_best_n[0][0]]]
+        print(le.classes_[log_best_n[0][4]])
+        print(le.classes_[log_best_n[0][3]])
+        print(le.classes_[log_best_n[0][2]])
+        print(le.classes_[log_best_n[0][1]])
+        print(le.classes_[log_best_n[0][0]])
 
-    return render_template("index.html", predResult = predResult, searchTerms = searchTerms, probs=[probs])
+
+    return render_template("index.html", log_predResult = log_predResult, searchTerms = searchTerms, log_probs=[log_probs], entered=entered)
+
+@app.route("/rawdata/")
+def rawdata():
+    wine_data = pd.read_sql('wines', con=engine).to_dict("records")
+    return jsonify(wine_data)
 
 @app.route("/data/")
 def data():
-    wine_data = pd.read_sql('wines', con=engine).to_dict("records")
-    return jsonify(wine_data)
+    return render_template("data.html")
+
 @app.route("/stopWords/")
 def stopWords():
     stop_words = pd.read_sql('stopWords', con=engine).to_dict("records")
     return jsonify(stop_words)
+
+@app.route("/storedFeedback/", methods=['GET'])
+def getFeedback():
+    if request.method == 'GET':
+        totalList = json.loads(request.args.get('totalList[]'))
+        return jsonify(totalList)
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5000, debug=True)
