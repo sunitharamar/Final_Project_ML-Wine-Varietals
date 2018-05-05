@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    background: #FFF;
+    }
+    
+
+    .hero, .hero-back {
+    background: #333;
+    background-size: cover;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.1s ease;
+    }
+
+    .hero .container, .hero-back .container {
+    z-index: 100;
+    color: #FFF;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+    }
+    
+    .hero-back {
+    background: url("https://www.gigirosso.com/wp-content/themes/2016/assets/img/4.jpg") no-repeat 0 20%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -100;
+    }
+    .parallax{
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .topnav li 
+    {
+        display: inline-block;
+        margin: 40px 0;
+    }
+
+    .topnav a:hover {
+    background: darkblue;
+    }
+    .topnav li a
+    {
+    margin: 8px;
+    color:#eee;
+    padding: 18px 20px;
+    background: gray;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    }
+</style>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Machine Learning with Wine</title>        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+            <!-- <link rel="stylesheet" href="css/style.css"> -->
+    
+        
+    </head>
+    
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="/methodology">Methodology</a>
+                    <a class="nav-item nav-link" href="/data">Data</a>
+                    <a class="nav-item nav-link" href="#">About Us</a>
+                  </div>
+                </div>
+        </nav>
+        <div class="hero">
+            
+            <div class="container">
+            <div class="row">
+                <div class="inner col-md-12">
+                <h2 style="font-size:80px" align='center' >Methodology</h2>
+                </div>
+            </div>
+            </div>
+            <div class="hero-back parallax"></div>
+        </div>
+        <div class="container">
+            <!-- <div id="nav-wrapper" class = "models-nav"> -->
+            <ul class = "topnav"  id = "modelsnav" style = "width: 100%">
+                <!-- <li class = "icon text-left">
+                    <a href = "javascipt:void(0);" onclick = "myFunction()"> "More..."
+                        <span class = "CSiconz text-18 fright" style = "padding-right: 20px;">.</span>
+                    </a></li> -->
+                <li><a href = "/data" style="text-decoration:none">Data</a></li>
+                <li><a href = "/data/logistic" style="text-decoration:none">Logistic Regression</a></li>
+                <li><a href = "/data/svm" style="text-decoration:none">Support Vector Machine</a></li>
+                <li><a href = "/data/nlp" style="text-decoration:none">NLP</a></li>
+                <li><a href = "/data/randomforest" style="text-decoration:none">Decision Tree/Random Forest</a></li>
+            </ul>
+        </div>
+        
+        <div class="container">
+            <section class="text-center">
+                <h2>Logistic Regression Topics</h2>
+            </section>
+            <div>
+                <p>Like all regression analyses, the logistic regression is a predictive analysis. Logistic regression is used to describe data and to explain the relationship between one dependent binary 
+                    variable and one or more nominal, ordinal, interval or ratio-level independent variables.
+                In this case, we used a Logistic Regression model in a multi-class classification capacity. 
+            The initial dataset contained over 700 wine varietals (!) which would be a tall order for any multi-class
+            classification model. Instead, we trimmed the list to use only the most common 20 varietals. Below, we can see how the logistic regression model
+            associated certain keywords with their varietals.</p>
+            <p></p>
+            </div>
+            <div>
+                <h3>Word Association by Wine Varietal</h3> 
+            </div>
+            <div>
+                    <h4>First, we load and fit the data to a logistic model:</h4> 
+                </div>
+                <p><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pandas</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">pd</span>
+                    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+                    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+                    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">seaborn</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">sns</span>
+                    <span style="color: #333333">%</span>matplotlib inline
+                    
+                    <span style="color: #888888">#Read in the data</span>
+                    wine_df <span style="color: #333333">=</span> pd<span style="color: #333333">.</span>read_csv(<span style="background-color: #fff0f0">&quot;winemag-data-130k-v2.csv&quot;</span>)
+                    
+                    <span style="color: #888888">#Here, we take only the top 20 varietals from the data set</span>
+                    varieties <span style="color: #333333">=</span> wine_df[<span style="background-color: #fff0f0">&#39;variety&#39;</span>]<span style="color: #333333">.</span>value_counts()
+                    top_wines_df <span style="color: #333333">=</span> wine_df<span style="color: #333333">.</span>loc[wine_df[<span style="background-color: #fff0f0">&#39;variety&#39;</span>]<span style="color: #333333">.</span>isin(varieties<span style="color: #333333">.</span>axes[<span style="color: #0000DD; font-weight: bold">0</span>][:<span style="color: #0000DD; font-weight: bold">20</span>])]
+                    
+                    <span style="color: #888888">#Since there are instances of the descriptions in the data set using the wine varietal, we add them to our list of stop words</span>
+                    wine_stop_words <span style="color: #333333">=</span> []
+                    <span style="color: #008800; font-weight: bold">for</span> variety <span style="color: #000000; font-weight: bold">in</span> top_wines_df[<span style="background-color: #fff0f0">&#39;variety&#39;</span>]<span style="color: #333333">.</span>unique():
+                        <span style="color: #008800; font-weight: bold">for</span> word <span style="color: #000000; font-weight: bold">in</span> variety<span style="color: #333333">.</span>split(<span style="background-color: #fff0f0">&#39; &#39;</span>):
+                            wine_stop_words<span style="color: #333333">.</span>append(word<span style="color: #333333">.</span>lower())
+                    wine_stop_words <span style="color: #333333">=</span> pd<span style="color: #333333">.</span>Series(data<span style="color: #333333">=</span>wine_stop_words)<span style="color: #333333">.</span>unique()
+                    wine_stop_words <span style="color: #333333">=</span> np<span style="color: #333333">.</span>append(wine_stop_words,<span style="background-color: #fff0f0">&quot;wine&quot;</span>) <span style="color: #888888">#We also add the word &quot;wine&quot; for good measure</span>
+                    
+                    <span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.feature_extraction.text</span> <span style="color: #008800; font-weight: bold">import</span> TfidfVectorizer, CountVectorizer <span style="color: #888888"># term frequency–inverse document frequency, is a numerical statistic that is intended to reflect how important a word is to a document in a collections</span>
+                    <span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.linear_model</span> <span style="color: #008800; font-weight: bold">import</span> LogisticRegression
+                    <span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.decomposition</span> <span style="color: #008800; font-weight: bold">import</span> LatentDirichletAllocation <span style="color: #008800; font-weight: bold">as</span> LDA
+                    <span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.feature_extraction</span> <span style="color: #008800; font-weight: bold">import</span> text
+                    
+                    stop_word_list <span style="color: #333333">=</span> text<span style="color: #333333">.</span>ENGLISH_STOP_WORDS<span style="color: #333333">.</span>union(wine_stop_words)
+                    <span style="color: #888888">#Here, we create a vectorizer object using our newly edited stop word list</span>
+                    vect <span style="color: #333333">=</span> TfidfVectorizer(stop_words<span style="color: #333333">=</span><span style="color: #007020">list</span>(stop_word_list))
+                    
+                    <span style="color: #888888">#Here, we fit the description column to our vectorizer</span>
+                    X <span style="color: #333333">=</span> vect<span style="color: #333333">.</span>fit_transform(top_wines_df[<span style="background-color: #fff0f0">&#39;description&#39;</span>])
+                    </pre></div>
+                    </p>
+            <div>
+                <div>
+                    <h4>Latent Dirichlet Allocation</h4>
+                    <p>In natural language processing, latent Dirichlet allocation (LDA) is a generative statistical 
+                        model that allows sets of observations to be explained by unobserved groups that explain why some parts of the data are similar. For example, if observations are words collected into documents, it posits that each document is a mixture of a small number of topics and that each word's creation is attributable to one of the document's topics. </p>
+                </div>
+                <p><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">lda <span style="color: #333333">=</span> LDA(learning_method<span style="color: #333333">=</span><span style="background-color: #fff0f0">&#39;batch&#39;</span>,n_components<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">20</span>)
+                    topics <span style="color: #333333">=</span> lda<span style="color: #333333">.</span>fit_transform(X)
+                    
+                    <span style="color: #888888">#This function was created by Mueller and Guido here: https://github.com/amueller/mglearn/blob/master/mglearn/tools.py</span>
+                    <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">print_topics</span>(topics, feature_names, sorting, topics_per_chunk<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">5</span>,
+                                     n_words<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">10</span>):
+                        <span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> <span style="color: #007020">range</span>(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #007020">len</span>(topics), topics_per_chunk):
+                            <span style="color: #888888"># for each chunk:</span>
+                            these_topics <span style="color: #333333">=</span> topics[i: i <span style="color: #333333">+</span> topics_per_chunk]
+                            <span style="color: #888888"># maybe we have less than topics_per_chunk left</span>
+                            len_this_chunk <span style="color: #333333">=</span> <span style="color: #007020">len</span>(these_topics)
+                            <span style="color: #888888"># print topic headers</span>
+                            <span style="color: #008800; font-weight: bold">print</span>((<span style="background-color: #fff0f0">&quot;topic {!s:&lt;8}&quot;</span> <span style="color: #333333">*</span> len_this_chunk)<span style="color: #333333">.</span>format(<span style="color: #333333">*</span>these_topics))
+                            <span style="color: #008800; font-weight: bold">print</span>((<span style="background-color: #fff0f0">&quot;-------- {0:&lt;5}&quot;</span> <span style="color: #333333">*</span> len_this_chunk)<span style="color: #333333">.</span>format(<span style="background-color: #fff0f0">&quot;&quot;</span>))
+                            <span style="color: #888888"># print top n_words frequent words</span>
+                            <span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> <span style="color: #007020">range</span>(n_words):
+                                <span style="color: #008800; font-weight: bold">try</span>:
+                                    <span style="color: #008800; font-weight: bold">print</span>((<span style="background-color: #fff0f0">&quot;{!s:&lt;14}&quot;</span> <span style="color: #333333">*</span> (len_this_chunk))<span style="color: #333333">.</span>format(
+                                        <span style="color: #333333">*</span>feature_names[sorting[these_topics, i]]))
+                                <span style="color: #008800; font-weight: bold">except</span>:
+                                    <span style="color: #008800; font-weight: bold">pass</span>
+                            <span style="color: #008800; font-weight: bold">print</span>(<span style="background-color: #fff0f0">&quot;</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>)
+                    
+                    sorting <span style="color: #333333">=</span> np<span style="color: #333333">.</span>argsort(lda<span style="color: #333333">.</span>components_, axis<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">1</span>)[:, ::<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>]
+                    feature_names <span style="color: #333333">=</span> np<span style="color: #333333">.</span>array(vect<span style="color: #333333">.</span>get_feature_names())
+                            
+                    print_topics(topics<span style="color: #333333">=</span><span style="color: #007020">range</span>(<span style="color: #0000DD; font-weight: bold">20</span>), feature_names<span style="color: #333333">=</span>feature_names, sorting<span style="color: #333333">=</span>sorting)
+                    </pre></div>
+                    </p>
+                <p align='center'><img src="https://imgur.com/5UTHVV3.png"></p>
+                <p align='center'><img src="https://imgur.com/ICx3ZMT.png"></p>
+                <p>Pretty interesting results!</p>
+            </div> 
+            <div>
+
+
+
+
+        </div>
+
+</body>
+</html>
+            
+  
