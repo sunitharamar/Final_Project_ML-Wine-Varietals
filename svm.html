@@ -59,6 +59,11 @@ body {
     font-weight: bold;
     border-radius: 5px;
     }
+
+    .errors {
+    color: red;
+    }
+
 </style>
     <head>
 
@@ -118,8 +123,8 @@ body {
                 <li><a href = "data.html" style="text-decoration:none">Data</a></li>
                 <li><a href = "logistic.html" style="text-decoration:none">Logistic Regression</a></li>
                 <li><a href = "svm.html" style="text-decoration:none">Support Vector Machine</a></li>
-                <li><a href = "nlp.html" style="text-decoration:none">Natural Language Processing</a></li>
-                <li><a href = "randomforest.html" style="text-decoration:none">Random Forest</a></li>
+                <li><a href = "nlp.html" style="text-decoration:none">NLP</a></li>
+                <li><a href = "randomforest.html" style="text-decoration:none">Decision Tree/Random Forest</a></li>
             </ul>
         </div>
         
@@ -134,30 +139,31 @@ body {
                 <h4>Step 1: Import Libraries and Modules</h4> 
             </div>
             <div>
-                <h4>Step 2: Load Wine Data</h4>  
+                <h4>Step 2: Load Wine Data</h4> 
+                <li>Limit dataset to only top 20 wine varietals.</li> 
             </div> 
+            
             <div>
-                <h4>Step 3: Split Data into Training Set and Testing Set</h4>   
-                <p><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">python <span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.model_selection</span> <span style="color: #008800; font-weight: bold">import</span> train_test_split <br>X_train, X_test, y_train, y_test <span style="color: #333333">=</span> train_test_split(X,y, test_size <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.3</span>, random_state<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">72</span>)
-                </pre></div>
-                 
-                </p>
-            </div>
-            <div>
-                <h4>Step 4: Preprocessing</h4>
+                <h4>Step 3: Preprocessing</h4>
                 <li>Normalize labels for the different wine varietals.</li>
+                <li>Create list of stopwords including excluding wine varietals within description.</li> 
                 <li>Use TfidfVectorizer to transforms text to feature vectors that can be used as inputs.</li>
             </div>
             <div>
-                <h4>Step 5: Cross Validation</h4>
-                <li>Use GridSearch to estimate performance and reduce change of overfitting.</li>
+                <h4>Step 4: Split Data into Training Set and Testing Set</h4>   
+                <p><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">python <span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.model_selection</span> <span style="color: #008800; font-weight: bold">import</span> train_test_split <br>X_train, X_test, y_train, y_test <span style="color: #333333">=</span> train_test_split(X,y, test_size <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.3</span>, random_state<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">72</span>)
+                </pre></div>
+                </p>
             </div>
             <div>
-                <h4>Step 6: Fit Model and Evaluate</h4>   
+                <h4>Step 5: Create Support Vector Classifier, Fit Model, and Make Predictions</h4>
                 <li>Fit Model on Training set</li>
+                <p><img src="svm_report.jpg" alt="svm_report" width=800px height=500px></p>
             </div>
-
-
+            <div>
+                <h4>Step 6: Cross Validation</h4>
+                <li>Use GridSearch to estimate performance and reduce change of overfitting.  <span class="errors"><b>  DIDN'T WORK WELL!</b></span> </li>
+            </div>
         </div>
 
 </body>
