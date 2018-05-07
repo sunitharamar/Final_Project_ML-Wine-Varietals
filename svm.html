@@ -156,13 +156,26 @@ body {
                 </p>
             </div>
             <div>
-                <h4>Step 5: Create Support Vector Classifier, Fit Model, and Make Predictions</h4>
+                <h4>Step 5: Create Support Vector Classifier, Fit Model, and Make Prediction</h4>
                 <li>Fit Model on Training set</li>
                 <p><img src="svm_report.jpg" alt="svm_report" width=800px height=500px></p>
             </div>
             <div>
                 <h4>Step 6: Cross Validation</h4>
                 <li>Use GridSearch to estimate performance and reduce change of overfitting.  <span class="errors"><b>  DIDN'T WORK WELL!</b></span> </li>
+                <p><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn.model_selection</span> <span style="color: #008800; font-weight: bold">import</span> GridSearchCV
+                    param_grid <span style="color: #333333">=</span> {<span style="background-color: #fff0f0">&#39;C&#39;</span>: [<span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.4</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #6600EE; font-weight: bold">0.8</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>],
+                                  <span style="background-color: #fff0f0">&#39;kernel&#39;</span>: (<span style="background-color: #fff0f0">&#39;rbf&#39;</span>, <span style="background-color: #fff0f0">&#39;poly&#39;</span>, <span style="background-color: #fff0f0">&#39;sigmoid&#39;</span>)}
+                    grid <span style="color: #333333">=</span> GridSearchCV(model, param_grid, scoring<span style="color: #333333">=</span><span style="background-color: #fff0f0">&#39;accuracy&#39;</span>,verbose<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">3</span>)
+                    </pre></p>
+            </div>
+            <div>
+                <h4>Issues with SVM</h4>
+                <li>Designed for binary linear classification </li>
+                <li>Too many features (20)/large data set </li>
+                <li>Cumbersome for multiclass problems</li>
+                <li>Time</li>
+                
             </div>
         </div>
 
