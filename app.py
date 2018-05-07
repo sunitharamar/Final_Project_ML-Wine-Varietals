@@ -30,6 +30,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer # term frequency–i
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report,confusion_matrix, accuracy_score
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.externals import joblib
 
 filename = "Logistic_Model.sav"
 loaded_model = pickle.load(open(filename, 'rb'))
@@ -37,6 +38,7 @@ loaded_model = pickle.load(open(filename, 'rb'))
 stop_word_df = pd.read_sql('stopWords', con=engine)
 stop_word_list = list(stop_word_df['stopWords'])
 vect = TfidfVectorizer(stop_words=stop_word_list)
+
 
 wine_data = pd.read_sql('wines', con=engine)
 X = vect.fit_transform(wine_data['description'])
@@ -46,6 +48,14 @@ y = le.fit_transform(wine_data['variety'])
 
 predResult = ""
 searchTerms = ""
+
+#For country model:
+country_model =joblib.load("log_country.pkl")
+vect_C = TfidfVectorizer()
+X2 = vect_C.fit_transform(wine_data['description'])
+le2 = LabelEncoder()
+y2 = le2.fit_transform(wine_data['country'].astype(str))
+
 
 #################################################
 # Flask Setup
@@ -63,6 +73,8 @@ def home():
     log_predResult = ""
     searchTerms = ""
     log_probs = ""
+    country_result = " "
+    country_probs = " "
     entered = "You entered: "
 
     if request.method == "POST":
@@ -83,8 +95,17 @@ def home():
         print(le.classes_[log_best_n[0][1]])
         print(le.classes_[log_best_n[0][0]])
 
+        #for country:
+        country_pred = vect_C.transform([searchTerms])
+        country_probab = country_model.predict_proba(country_pred)
+        country_best_n = np.argsort(country_probab, axis=1)[:,-10:]
+        country_probs = sorted(country_probab[0], reverse=True)[0:10]
+        print(country_probs)
+        country_result = [le2.classes_[country_best_n[0][-1]+1],le2.classes_[country_best_n[0][-2]+1],le2.classes_[country_best_n[0][-3]+1],le2.classes_[country_best_n[0][-4]+1],le2.classes_[country_best_n[0][-5]+1],
+        le2.classes_[country_best_n[0][-6]+1],le2.classes_[country_best_n[0][-7]+1],le2.classes_[country_best_n[0][-8]+1],le2.classes_[country_best_n[0][-9]+1],le2.classes_[country_best_n[0][-10]+1]]
+        print(country_result)
 
-    return render_template("index.html", log_predResult = log_predResult, searchTerms = searchTerms, log_probs=[log_probs], entered=entered)
+    return render_template("index.html", log_predResult = log_predResult, searchTerms = searchTerms, log_probs=[log_probs], entered=entered, country_result=country_result,country_probs=[country_probs])
 
 @app.route("/rawdata/")
 def rawdata():
