@@ -187,8 +187,9 @@ body {
                 <div>
                     <h4>Latent Dirichlet Allocation</h4>
                     <div>
-                    <p>In natural language processing, latent Dirichlet allocation (LDA) is a generative statistical 
-                        model that allows sets of observations to be explained by unobserved groups that explain why some parts of the data are similar. For example, if observations are words collected into documents, it posits that each document is a mixture of a small number of topics and that each word's creation is attributable to one of the document's topics. </p></div>
+                    <p>From Wikipedia: In natural language processing, latent Dirichlet allocation (LDA) is a generative statistical 
+                        model that allows sets of observations to be explained by unobserved groups that explain why some parts of the data are similar. For example, if observations are words collected into documents, it posits that each document is a mixture of a small number of topics and that each word's creation is attributable to one of the document's topics. 
+                        Essentially, LDA is a “generative probabilistic model” of a collection of composites made up of parts. In terms of topic modeling, the composites are documents and the parts are words and/or phrases (n-grams). But you could apply LDA to DNA and nucleotides, pizzas and toppings, molecules and atoms, employees and skills, or keyboards and crumbs.</p></div>
                 </div>
                 <p><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">lda <span style="color: #333333">=</span> LDA(learning_method<span style="color: #333333">=</span><span style="background-color: #fff0f0">&#39;batch&#39;</span>,n_components<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">20</span>)
                     topics <span style="color: #333333">=</span> lda<span style="color: #333333">.</span>fit_transform(X)
