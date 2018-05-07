@@ -90,9 +90,9 @@ body {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Methodology</a>
-                    <a class="nav-item nav-link" href="#">Data</a>
+                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="/methodology">Methodology</a>
+                    <a class="nav-item nav-link" href="/data">Data</a>
                     <a class="nav-item nav-link" href="#">About Us</a>
                   </div>
                 </div>
@@ -115,11 +115,11 @@ body {
                     <a href = "javascipt:void(0);" onclick = "myFunction()"> "More..."
                         <span class = "CSiconz text-18 fright" style = "padding-right: 20px;">.</span>
                     </a></li> -->
-                <li><a href = "data.html" style="text-decoration:none">Data</a></li>
-                <li><a href = "logistic.html" style="text-decoration:none">Logistic Regression</a></li>
-                <li><a href = "svm.html" style="text-decoration:none">Support Vector Machine</a></li>
-                <li><a href = "nlp.html" style="text-decoration:none">NLP</a></li>
-                <li><a href = "randomforest.html" style="text-decoration:none">Decision Tree/Random Forest</a></li>
+                <li><a href = "/data" style="text-decoration:none">Data</a></li>
+                <li><a href = "/data/logistic" style="text-decoration:none">Logistic Regression</a></li>
+                <li><a href = "/data/svm" style="text-decoration:none">Support Vector Machine</a></li>
+                <li><a href = "/data/nlp" style="text-decoration:none">NLP</a></li>
+                <li><a href = "/data/randomforest" style="text-decoration:none">Decision Tree/Random Forest</a></li>
             </ul>
         </div>
         
@@ -137,11 +137,10 @@ body {
                 <h4>Step 2: Preprocessing</h4>  
                 <li>Drop all NaN values in the dataset.</li>
                 <li>Limit dataset to only top 20 wine varietals</li>
-                <li>After dropping NaN/emptycells - only top 16 wine varietals</li>
                 <li>Summarize data</li>
-                <p><img src="histogram_prices_dt.jpg" alt="dt_price_hist" height="300px" width = "400px"></p>
+                <p><img src="https://imgur.com/TxidfYp.png" alt="dt_price_hist" height="300px" width = "400px"></p>
                 <li>Relationship Between Columns</li>
-                <p><img src="relations_dt.jpg" alt="dt_relations" height="600px" width = "800px"></p>
+                <p><img src="https://imgur.com/Si9jHO9.png" alt="dt_relations" height="600px" width = "800px"></p>
             </div> 
             <div>
                 <h4>Step 3: Transform Data </h4>   
@@ -183,7 +182,7 @@ body {
             </div>
             <div>
                 <h4>Step 5: Apply Decision Tree Classifier model</h4>
-                <li>Create a DecisionTreeClassifier model and fit the training data</li>
+                <li>Create a Naive Bayes model and fit the training data</li>
                 <p><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">sklearn</span> <span style="color: #008800; font-weight: bold">import</span> tree
                     clf <span style="color: #333333">=</span> tree<span style="color: #333333">.</span>DecisionTreeClassifier()
                     clf <span style="color: #333333">=</span> clf<span style="color: #333333">.</span>fit(X_train, y_train)
@@ -191,21 +190,11 @@ body {
                     </pre></div>
                 </p>
                 <li>Decision Tree</li>
-                <p><img src="dt_graph.jpg" alt="dt_graph" height="800px" width = "1000px"></p><Br>
-                <h3>Accuracy of the DecisionTree model predicting wine variety was perfect 1.0 </h3>
-                <p>This definitely sounds like a overfit with given limited only top 16 wine varietal </p><br>
+                <p><img src="https://imgur.com/vdckR9J.png" alt="dt_graph" height="800px" width = "1000px"></p>
             </div>
-            <section class="text-center">
-                <h2>Random Forest</h2>
-            </section>
-            <div>
-                <p>Random Forests are a Voting classifier: Make a number of trees(from different partions of the training data) and uses the mode of the tree results for the final results.</p>
-            </div>
-            <div>
-                <h4>Steps: Preprocessing data is exactly the same as Decision tree</h4> 
-                <p><img src="randomforest.png" alt="dt_randomforest" height="600px" width = "800px"></p><br>
-                <h3>Accuracy of the Random Forest model predicting wine variety was ~98% </h3>
-                <p>This definitely sounds like a overfit with given limited only top 16 wine varietal </p><br>
+
+
+
         </div>
 
 </body>
