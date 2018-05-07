@@ -119,12 +119,11 @@ body {
                         <button id="submit"type="submit" class="btn btn-secondary">Submit</button>
                     </span>
                     <div>
-                      <h6>Choose a model below:</h6>
+                      <h6>Choose a view below:</h6>
                     <select id="selectModel" class="form-control" title="Choose a model...">
-                      <option>Choose a Model...</option>
-                      <option>Logistic Regression</option>
-                      <option>SVM (Support Vector Model)</option>
-                      <option>NLP</option>
+                      <option>Choose a View...</option>
+                      <option>Varietal Prediction</option>
+                      <option>Country Prediction</option>
                     </select>
                     </div>
 
@@ -230,20 +229,22 @@ var store = [];
 
 var select = document.querySelector('#selectModel');
 var probabilities = " ";
+var C_probs = " ";
 d3.select('#selectModel')
   .on("change", function(){
       console.log('TEST')
       var sect = document.getElementById('selectModel')
       var section = sect.options[sect.selectedIndex].value;
       console.log(section);
-      if (section == 'SVM (Support Vector Model)'){
-        console.log('SVM')
-        var fakeData = [10,15,21,15,4]
-        var fakeNames = ["Red", "Blend", "White", "Uhhh", "Tasty"]
+       if (section == 'Country Prediction'){
+        console.log('Country Prediction')
+        C_probs = {{ country_probs }};
+        var listOfCountries = {{ country_result |safe}};
+        console.log(listOfCountries)
         var data = [{
           type: 'bar',
-          x: fakeData.sort(),
-          y: fakeNames,
+          x: C_probs[0].reverse(),
+          y: listOfCountries.reverse(),
           orientation: 'h',
           marker: {
             color: '#722f37'
@@ -251,15 +252,21 @@ d3.select('#selectModel')
         }];
         var layout = {
           title: 'Model Predictions',
+          xaxis:{
+            title: "Model's Predicted Country"
+          },
+          yaxis:{
+            title:"Country"
+          },
           margin:{
             l:200,
             t:50
           }
         };
         Plotly.newPlot('myDiv', data, layout)
-        }
-      if (section == 'Logistic Regression'){
-        console.log('Logistic Regression')
+        } 
+      if (section == 'Varietal Prediction'){
+        console.log('Varietal Prediction')
         probabilities = {{ log_probs }};
         var listOfWines = {{ log_predResult|safe }};
         console.log((probabilities));
