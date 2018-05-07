@@ -104,7 +104,28 @@ def stopWords():
 def getFeedback():
     if request.method == 'GET':
         totalList = json.loads(request.args.get('totalList[]'))
-        return jsonify(totalList)
+        return jsonify(totalListi)
+
+@app.route("/methodology/")
+def methodology():
+    return render_template("methodology.html")
+
+@app.route("/data/logistic")
+def logistic():
+    return render_template("logistic.html")
+
+@app.route("/data/svm")
+def svm():
+    return render_template("svm.html")
+
+@app.route("/data/nlp")
+def nlp():
+    nlpImg = "img/nlp_accuracy.jpg"
+    return render_template("nlp.html", nlpImg = nlpImg)
+
+@app.route("/data/randomforest")
+def randomforest():
+    return render_template("randomforest.html")
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5000, debug=True)
